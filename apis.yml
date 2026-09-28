@@ -1,23 +1,76 @@
 aid: bioheng
+
 name: Bioheng
-description: 'Bioheng is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+
+description: Bioheng, operating under the brand Imviva, is a clinical-stage biotechnology company focused on developing allogeneic CAR‑T cell
+  therapies for oncology and autoimmune diseases. The company aims to create scalable, off‑the‑shelf cell therapies to broaden patient access
+  and advance regenerative medicine.
+
 url: https://raw.githubusercontent.com/api-evangelist/bioheng/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-09-28 (modular-v1; was harvest)
+
 specificationVersion: '0.20'
+
 created: '2026-09-28'
+
 modified: '2026-09-28'
+
 tags:
-- Company
-apis: []
+- Biotechnology
+- Cell Therapy
+- Oncology
+- Autoimmune Disease
+- Clinical-stage
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
 common:
+- type: Hosts
+  url: hosts/bioheng-hosts.yml
+- type: DomainSecurity
+  url: security/bioheng-domain-security.yml
 - type: Website
-  url: https://equityzen.com/company/bioheng
+  url: https://www.imvivabio.com
+
+apis:
+- name: Bioheng API
+  description: Imviva provides an API platform but no machine‑readable contract was discovered. The website lists product information but no developer
+    documentation or OpenAPI spec is publicly available.
+  humanURL: https://www.imvivabio.com
+  x-coverage:
+    state: unreadable
+    reason: no-machine-readable-spec
+    detail: The provider's website does not expose any OpenAPI/AsyncAPI/GraphQL spec and attempts to fetch common spec URLs on https://api.imvivabio.com
+      returned no response.
+    evidence:
+    - url: https://api.imvivabio.com/openapi.json
+      status: unreachable
+    checked: '2026-09-28'
+  aid: bioheng:bioheng-api
+
+x-coverage:
+  state: none
+  reason: no-developer-program
+  method: derived
+  generated: '2026-09-28'
+  generator: derive-coverage.py (pre-flight evidence)
+  detail: the company publishes no developer documentation host and no machine-readable contract on its own domain
+  evidence:
+  - url: https://equityzen.com/company/bioheng
+    status: 403
+x-enrichment:
+  date: '2026-09-28'
+  status: enriched
+  artifacts_added: 5
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local
